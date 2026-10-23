@@ -474,11 +474,38 @@ function CampaignArtwork({ campaign }: { campaign: Campaign }) {
   )
 }
 
+// How long each hero campaign stays on screen before auto-advancing (ms).
+// ~6s gives readers time to absorb the headline, price, and benefits.
+const HERO_SLIDE_MS = 6000
+
 function Hero({ motionPaused }: { motionPaused: boolean }) {
   const [activeCampaign, setActiveCampaign] = useState(0)
+  const [interacting, setInteracting] = useState(false)
   const campaign = campaigns[activeCampaign]
   const [motionRef, isOnScreen] = useOnScreen<HTMLElement>()
   const motionRunning = isOnScreen && !motionPaused
+
+  // Auto-advance through campaigns on a timer. Pauses when motion is paused,
+  // when the hero is off-screen, when the user is hovering/focusing it, and for
+  // users who prefer reduced motion.
+  const autoplay = motionRunning && !interacting
+  useEffect(() => {
+    if (!autoplay) return
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return
+    }
+    const id = window.setInterval(() => {
+      setActiveCampaign((current) => (current + 1) % campaigns.length)
+    }, HERO_SLIDE_MS)
+    return () => window.clearInterval(id)
+  }, [autoplay, activeCampaign])
+
+  const goToCampaign = (index: number) => {
+    setActiveCampaign(index)
+  }
 
   return (
     <section
@@ -486,6 +513,12 @@ function Hero({ motionPaused }: { motionPaused: boolean }) {
       className={`hero decorative-motion relative min-h-[748px] overflow-hidden bg-[#17182f] text-white ${
         motionRunning ? "motion-running" : ""
       }`}
+      onMouseEnter={() => setInteracting(true)}
+      onMouseLeave={() => setInteracting(false)}
+      onFocusCapture={() => setInteracting(true)}
+      onBlurCapture={() => setInteracting(false)}
+      aria-roledescription="carousel"
+      aria-label="Yes campaigns"
     >
       <img
         className="absolute inset-y-0 right-0 h-full w-[55%] object-cover"
@@ -515,7 +548,11 @@ function Hero({ motionPaused }: { motionPaused: boolean }) {
           {String(activeCampaign + 1).padStart(2, "0")} / 06
         </span>
       </div>
-      <div className="relative grid items-start gap-[58px] px-5 pb-24 pt-[42px] md:px-[72px] min-[1350px]:grid-cols-[590px_600px]">
+      <div
+        key={activeCampaign}
+        className="hero-slide relative grid items-start gap-[58px] px-5 pb-24 pt-[42px] md:px-[72px] min-[1350px]:grid-cols-[590px_600px]"
+        aria-live="polite"
+      >
         <div className="flex flex-col items-start gap-5">
           <p className="text-[13px] font-semibold text-[#f9b7d7]">
             {campaign.category}
@@ -603,7 +640,7 @@ function Hero({ motionPaused }: { motionPaused: boolean }) {
                 ? "w-[42px] bg-[#ff008a]"
                 : "w-1.5 bg-[#d1ccdf]"
             }`}
-            onClick={() => setActiveCampaign(index)}
+            onClick={() => goToCampaign(index)}
             aria-pressed={index === activeCampaign}
             aria-label={`Show campaign ${index + 1}: ${item.title}`}
           />

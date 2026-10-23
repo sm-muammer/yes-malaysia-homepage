@@ -236,6 +236,9 @@
   .motion-paused .explore-petals img {
     animation-play-state: paused !important;
   }
+  .hero-slide {
+    animation: hero-fade 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
   .section-reveal {
     opacity: 0;
     transform: translate3d(0, 12px, 0);
@@ -388,6 +391,17 @@
   }
 }
 
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes ribbon-flow {
   0%,
   100% {
@@ -432,6 +446,9 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .hero-slide {
+    animation: none !important;
   }
   .motion-ui article,
   .motion-ui .support-card,
