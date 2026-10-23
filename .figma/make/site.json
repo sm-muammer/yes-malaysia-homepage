@@ -1,0 +1,10 @@
+{
+  "description": "This web application replicates the Yes Malaysia homepage, ensuring a faithful, responsive design that maintains original content and aesthetics for users seeking a familiar online experience.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

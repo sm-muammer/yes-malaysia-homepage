@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle id="Ribbon travelling highlight" opacity="0" cx="11" cy="11" r="11" fill="url(#paint0_radial_0_1884)"/>
+<defs>
+<radialGradient id="paint0_radial_0_1884" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(11 11) scale(11)">
+<stop stop-color="#FFB8E6"/>
+<stop offset="0.28" stop-color="#FF0D91" stop-opacity="0.65"/>
+<stop offset="1" stop-color="#FF008A" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>

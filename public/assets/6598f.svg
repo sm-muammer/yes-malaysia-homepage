@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="92.3811" height="14.664" viewBox="0 0 92.3811 14.664" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Sakura flourish" clip-path="url(#clip0_0_1181)">
+<ellipse id="Petal" cx="6.59528" cy="7.33201" rx="3.5" ry="6.5" transform="rotate(-35 6.59528 7.33201)" fill="#FF008A"/>
+<ellipse id="Petal_2" cx="26.7858" cy="7.33201" rx="3.5" ry="6.5" transform="rotate(35 26.7858 7.33201)" fill="#FF008A"/>
+<rect id="Stem" x="40.3811" y="6.83201" width="52" height="1" fill="#E8DCE6"/>
+</g>
+<defs>
+<clipPath id="clip0_0_1181">
+<rect width="92.3811" height="14.664" fill="white"/>
+</clipPath>
+</defs>
+</svg>

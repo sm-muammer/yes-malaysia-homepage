@@ -1,0 +1,442 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Inter:Regular';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Inter:Medium';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Inter:Semi Bold';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Inter:Bold';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Inter:Extra Bold';
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Noto Sans JP:Regular';
+  src: url('https://static.figma.com/font/NotoSansJP-VF_2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@theme {
+  --color-brand: #ff008a;
+  --color-brand-hover: #e8007d;
+  --color-ink: #211c35;
+  --color-navy: #181a34;
+  --color-navy-2: #17182f;
+  --color-navy-3: #101329;
+  --color-muted: #6d6477;
+  --color-pink-bg: #fff3f8;
+  --color-light-1: #c9c5db;
+  --color-light-2: #d1ccdf;
+  --color-accent-1: #f7afd1;
+  --color-accent-2: #f9b7d7;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: 'Inter:Regular', Inter, Arial, sans-serif;
+    font-weight: 400;
+  }
+  a {
+    text-decoration: none;
+  }
+  strong {
+    font-family: 'Inter:Semi Bold', Inter, Arial, sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .section {
+    padding: 88px 72px;
+  }
+  .heading {
+    font-family: 'Inter:Medium', Inter, Arial, sans-serif;
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.12;
+  }
+  .subheading {
+    margin-top: 14px;
+    color: #6d6477;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .pill {
+    display: inline-flex;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-radius: 999px;
+    padding: 0 24px;
+    font-family: 'Inter:Semi Bold', Inter, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+  .pink {
+    border: 1px solid #ff008a;
+    background: #ff008a;
+  }
+  .crop {
+    position: relative;
+    flex: none;
+    overflow: hidden;
+  }
+  .crop > img {
+    position: absolute;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .campaign-artwork {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.46);
+    border-radius: 20px;
+  }
+  .campaign-artwork > img {
+    position: absolute;
+    top: -1px;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .campaign-ribbon {
+    position: absolute;
+    top: 530px;
+    left: 72px;
+    pointer-events: none;
+    transform-origin: 50% 50%;
+    animation: ribbon-flow 9s ease-in-out infinite;
+    will-change: transform;
+  }
+  .campaign-petal {
+    position: absolute;
+    width: 7px;
+    height: 13px;
+    transform: rotate(-35deg);
+    animation: petal-drift 8.5s linear infinite;
+    will-change: transform, opacity;
+  }
+  .campaign-petal-one {
+    top: 30px;
+    right: 145px;
+    animation-delay: -1.2s;
+  }
+  .campaign-petal-two {
+    top: 186px;
+    right: 78px;
+    animation-delay: -5.1s;
+  }
+  .ribbon img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .ribbon .ribbon-glow {
+    top: 7%;
+    right: 0;
+    left: auto;
+    width: 74px;
+    height: 74px;
+  }
+  .ribbon .ribbon-highlight {
+    top: 15%;
+    right: 26px;
+    left: auto;
+    width: 22px;
+    height: 22px;
+  }
+  .hero-petals {
+    position: absolute;
+    top: 31px;
+    right: 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 7px);
+    gap: 142px 90px;
+  }
+  .hero-petals img,
+  .explore-petals img {
+    width: 7px;
+    height: 13px;
+    transform: rotate(-35deg);
+  }
+  .explore-petals {
+    position: absolute;
+    inset: 26px 20px auto;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .explore-petals img {
+    animation: petal-drift 9.5s linear infinite;
+    will-change: transform, opacity;
+  }
+  .explore-petals img:nth-child(1) {
+    animation-delay: -0.6s;
+  }
+  .explore-petals img:nth-child(2) {
+    animation-delay: -2.2s;
+  }
+  .explore-petals img:nth-child(3) {
+    animation-delay: -3.8s;
+  }
+  .explore-petals img:nth-child(4) {
+    animation-delay: -5.4s;
+  }
+  .explore-petals img:nth-child(5) {
+    animation-delay: -7s;
+  }
+  .explore-petals img:nth-child(6) {
+    animation-delay: -8.6s;
+  }
+  .decorative-motion .campaign-ribbon,
+  .decorative-motion .campaign-petal,
+  .decorative-motion .explore-petals img {
+    animation-play-state: paused;
+  }
+  .decorative-motion.motion-running .campaign-ribbon,
+  .decorative-motion.motion-running .campaign-petal,
+  .decorative-motion.motion-running .explore-petals img {
+    animation-play-state: running;
+  }
+  .motion-paused .campaign-ribbon,
+  .motion-paused .campaign-petal,
+  .motion-paused .explore-petals img {
+    animation-play-state: paused !important;
+  }
+  .section-reveal {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+    transition:
+      opacity 480ms ease-out,
+      transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .section-reveal.is-revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  .motion-ui article,
+  .motion-ui .support-card {
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+  .motion-ui article:hover,
+  .motion-ui article:focus-within,
+  .motion-ui .support-card:hover,
+  .motion-ui .support-card:focus-visible {
+    border-color: rgba(255, 0, 138, 0.38);
+    box-shadow: 0 12px 30px rgba(33, 28, 53, 0.1);
+  }
+  .motion-ui a,
+  .motion-ui button {
+    transition:
+      color 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+  .motion-ui .pill:hover,
+  .motion-ui .motion-toggle:hover {
+    background-color: #e8007d;
+    border-color: #e8007d;
+  }
+  .motion-ui a:focus-visible,
+  .motion-ui button:focus-visible {
+    outline: 3px solid #ff008a;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px white;
+  }
+  .motion-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50;
+    min-width: 112px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: #181a34;
+    padding: 0 16px;
+    color: white;
+    font-family: 'Inter:Semi Bold', Inter, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 8px 22px rgba(16, 19, 41, 0.22);
+  }
+  .font-noto {
+    font-family: 'Noto Sans JP:Regular', sans-serif;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 64px 20px;
+  }
+  .heading {
+    font-size: 36px;
+  }
+  .hero {
+    min-height: 760px;
+  }
+  .hero > img:first-child {
+    width: 100%;
+    opacity: 0.38;
+  }
+  .ribbon {
+    left: -20%;
+    width: 150%;
+  }
+  .campaign-ribbon {
+    --ribbon-x: 5px;
+    --ribbon-y: -1px;
+    animation-duration: 12s;
+  }
+  .campaign-petal,
+  .explore-petals img {
+    --petal-x: 6px;
+    --petal-y: 34px;
+    animation-duration: 11s;
+  }
+  .motion-toggle {
+    right: 12px;
+    bottom: 12px;
+    height: 38px;
+    min-width: 106px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .connections-section .connection-canopy {
+    top: 0;
+    right: 0;
+    width: min(68vw, 510px);
+    height: 420px;
+    opacity: 0.52;
+    object-position: top right;
+  }
+  .connections-section .connection-veil {
+    inset: 0;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      #fff3f8 0%,
+      rgba(255, 243, 248, 0.94) 44%,
+      rgba(255, 243, 248, 0.22) 100%
+    );
+  }
+}
+
+@media (max-width: 767px) {
+  .connections-section .connection-canopy {
+    width: 100%;
+    height: 360px;
+    opacity: 0.38;
+  }
+  .connections-section .connection-veil {
+    background: linear-gradient(
+      90deg,
+      #fff3f8 0%,
+      rgba(255, 243, 248, 0.92) 48%,
+      rgba(255, 243, 248, 0.3) 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 32px;
+  }
+}
+
+@keyframes ribbon-flow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(1);
+  }
+  50% {
+    transform: translate3d(var(--ribbon-x, 12px), var(--ribbon-y, -3px), 0)
+      scaleX(1.008);
+  }
+}
+
+@keyframes petal-drift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-35deg);
+  }
+  14% {
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate3d(var(--petal-x, 14px), calc(var(--petal-y, 68px) * 0.52), 0)
+      rotate(18deg);
+  }
+  86% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(var(--petal-x, 14px) * -0.35), var(--petal-y, 68px), 0)
+      rotate(74deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campaign-ribbon,
+  .campaign-petal,
+  .explore-petals img {
+    animation: none !important;
+  }
+  .section-reveal,
+  .section-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .motion-ui article,
+  .motion-ui .support-card,
+  .motion-ui a,
+  .motion-ui button {
+    transition-duration: 0.01ms;
+  }
+}
